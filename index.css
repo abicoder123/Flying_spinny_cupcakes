@@ -3,6 +3,8 @@ body {
 }
 
 #cupcake {
+    position: absolute;  
+    top: 0;
     animation: spin 3s linear infinite;
 }
 
