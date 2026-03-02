@@ -1,17 +1,32 @@
-    const cupcake = document.getElementById("cupcake");
+ function makeCupcakeFall(cupcake) {
+      let top = 0;
 
-    function randomPosition() {
-      const maxWidth = window.innerWidth - 50;
-      const randomX = Math.random() * maxWidth;
-      cupcake.style.left = randomX + "px";
+      const fall = setInterval(function() {
+        top += 5;
+        cupcake.style.top = top + "px";
+
+        if (top > window.innerHeight) {
+          clearInterval(fall);
+        }
+      }, 20);
     }
 
-    cupcake.addEventListener("click", function() {
+    function createCupcake() {
       const newCupcake = document.createElement("span");
       newCupcake.textContent = "🧁";
+      newCupcake.classList.add("cupcake");
+
+      newCupcake.style.left = Math.random() * window.innerWidth + "px";
+      newCupcake.style.top = "0px";
+
       document.body.appendChild(newCupcake);
 
-      randomPosition(); 
-    });
+      makeCupcakeFall(newCupcake);
 
-    randomPosition();
+      newCupcake.addEventListener("click", createCupcake);
+    }
+
+    // make the first cupcake work
+    const firstCupcake = document.querySelector(".cupcake");
+    firstCupcake.addEventListener("click", createCupcake);
+  </script>
